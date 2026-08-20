@@ -65,8 +65,25 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	steps, activity, duration, err := parseTraining(data)
 	if err != nil {
 		log.Println(err)
-		return "", nil
+		return "", err
 	}
+
+	if steps <= 0 {
+		return "", fmt.Errorf("некорректное количество шагов (получено %d)", steps)
+	}
+
+	if weight <= 0 {
+		return "", fmt.Errorf("некорректный вес (получено %.1f кг)", weight)
+	}
+
+	if height <= 0 {
+		return "", fmt.Errorf("некорректный рост (получено %.2f м)", height)
+	}
+
+	if duration <= 0 {
+		return "", fmt.Errorf("продолжительность тренировки = 0")
+	}
+
 	switch activity {
 	case "Бег":
 		dist := distance(steps, height)
