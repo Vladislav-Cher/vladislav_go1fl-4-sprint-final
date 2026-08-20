@@ -35,7 +35,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if err != nil {
 		return 0, time.Duration(0), err
 	}
-	if duration == 0 {
+	if duration <= 0 {
 		return 0, time.Duration(0), fmt.Errorf("продолжительность тренировки = 0")
 	}
 
@@ -53,7 +53,7 @@ func DayActionInfo(data string, weight, height float64) string {
 		return ""
 	}
 
-	if duration == 0 {
+	if duration <= 0 {
 		return ""
 	}
 
