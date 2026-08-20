@@ -45,7 +45,6 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 }
 
 func distance(steps int, height float64) float64 {
-	// TODO: реализовать функцию
 	stepLength := height * stepLengthCoefficient
 
 	distInM := float64(steps) * stepLength
@@ -63,7 +62,6 @@ func meanSpeed(steps int, height float64, duration time.Duration) float64 {
 }
 
 func TrainingInfo(data string, weight, height float64) (string, error) {
-	// TODO: реализовать функцию
 	steps, activity, duration, err := parseTraining(data)
 	if err != nil {
 		log.Println(err)
