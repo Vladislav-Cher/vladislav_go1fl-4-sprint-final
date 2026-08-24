@@ -112,25 +112,19 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 
 }
 
-func variablesCheck(steps int, weight, height float64, duration time.Duration) error {
+func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 {
-		return fmt.Errorf("некорректное количество шагов (получено %d)", steps)
+		return 0, fmt.Errorf("некорректное количество шагов (получено %d)", steps)
 	}
 	if weight <= 0 {
-		return fmt.Errorf("некорректный вес (получено %.1f кг)", weight)
+		return 0, fmt.Errorf("некорректный вес (получено %.1f кг)", weight)
 	}
 	if height <= 0 {
-		return fmt.Errorf("некорректный рост (получено %.2f м)", height)
+		return 0, fmt.Errorf("некорректный рост (получено %.2f м)", height)
 	}
 	if duration <= 0 {
-		return fmt.Errorf("некорректная продолжительность тренировки")
+		return 0, fmt.Errorf("некорректная продолжительность тренировки")
 	}
-	return nil
-}
-
-func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-
-	variablesCheck(steps, weight, height, duration)
 
 	meanS := meanSpeed(steps, height, duration)
 	durationInMinutes := duration.Minutes()
@@ -139,8 +133,18 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 }
 
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
-
-	variablesCheck(steps, weight, height, duration)
+	if steps <= 0 {
+		return 0, fmt.Errorf("некорректное количество шагов (получено %d)", steps)
+	}
+	if weight <= 0 {
+		return 0, fmt.Errorf("некорректный вес (получено %.1f кг)", weight)
+	}
+	if height <= 0 {
+		return 0, fmt.Errorf("некорректный рост (получено %.2f м)", height)
+	}
+	if duration <= 0 {
+		return 0, fmt.Errorf("некорректная продолжительность тренировки")
+	}
 
 	meanS := meanSpeed(steps, height, duration)
 	durationInMinutes := duration.Minutes()
