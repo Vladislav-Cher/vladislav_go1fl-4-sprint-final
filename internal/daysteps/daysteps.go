@@ -36,7 +36,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 		return 0, time.Duration(0), err
 	}
 	if duration <= 0 {
-		return 0, time.Duration(0), fmt.Errorf("продолжительность тренировки = 0")
+		return 0, time.Duration(0), fmt.Errorf("некорректная продолжительность тренировки")
 	}
 
 	return steps, duration, nil
